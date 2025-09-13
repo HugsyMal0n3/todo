@@ -6,8 +6,8 @@
     <title>To Do Planner</title>
   </head>
   <body>
-    <header id="user">
-      <div>
+    <header>
+      <div id="user">
         <img id="logo" src="" alt="App logo" />
         <h1 id="title">To Do Planner</h1>
       </div>
@@ -37,9 +37,37 @@
 
       <article class="todo" aria-labelledby="To-Do">
         <h3>Example To-Do</h3>
+
+        <label for="todo-title">Title</label>
+        <input type="text" id="todo-title" name="todo-title" />
+
+        <label for="due-date">Due date</label>
+        <input type="date" id="due-date" name="due-date" />
+
+        <fieldset>
+          <legend>Priority</legend>
+          <label><input type="radio" name="priority" value="low" /> Low</label>
+          <label
+            ><input type="radio" name="priority" value="medium" /> Medium</label
+          >
+          <label
+            ><input type="radio" name="priority" value="high" /> High</label
+          >
+        </fieldset>
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"></textarea>
+
+        <fieldset>
+          <legend>Checklist</legend>
+          <label><input type="checkbox" name="task1" /> Task 1</label>
+          <label><input type="checkbox" name="task2" /> Task 2</label>
+        </fieldset>
       </article>
     </section>
 
-    <footer></footer>
+    <footer>
+      <p>&copy; 2025 To Do Planner</p>
+    </footer>
   </body>
 </html>
