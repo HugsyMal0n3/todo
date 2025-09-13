@@ -1,0 +1,125 @@
+:root {
+  /* Colour Palette */
+  --pastel-aqua: #bde3f2;
+  --pastel-navy-mist: #a2c5d9;
+  --text-muted: #5f6f7a;
+  --baby-blue: #f9fafc;
+  --light-steel-blue: #a7c7e7;
+  --pastel-sky-blue: #c7e6f5;
+  --pale-blue: #d9eaf7;
+  --off-white: #fefefe;
+  --blue-pastel: #eaf2f8;
+
+  --font-family: Arial, Helvetica, sans-serif;
+  --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--font-family);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+body {
+  background-color: var(--off-white);
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: var(--box-shadow);
+}
+
+#user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+  background-color: var(--light-steel-blue);
+  border-radius: 50%;
+}
+
+#title {
+  font-size: 1.5rem;
+}
+
+header nav {
+  background-color: var(--pale-blue);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: background-color 0.4s ease-in-out;
+}
+
+header nav:hover {
+  background-color: var(--light-steel-blue);
+}
+
+header legend {
+  color: var(--off-white);
+}
+
+button {
+  background-color: var(--pastel-sky-blue);
+  color: var(--off-white);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  margin: 0 0.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--pastel-navy-mist);
+}
+
+.project,
+.todo {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--baby-blue);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.project {
+  height: 100vh;
+}
+
+.todo {
+  display: grid;
+  background-color: var(--blue-pastel);
+  height: fit-content;
+  width: fit-content;
+}
+
+.todo label,
+.todo legend {
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 0.8rem 0px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--baby-blue);
+  font-size: 0.85rem;
+  color: #555;
+}
