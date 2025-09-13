@@ -3,7 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do</title>
+    <title>To Do Planner</title>
   </head>
-  <body></body>
+  <body>
+    <header id="user">
+      <div>
+        <img id="logo" src="" alt="App logo" />
+        <h1 id="title">To Do Planner</h1>
+      </div>
+
+      <!-- Project controls -->
+      <nav id="project-header" aria-label="Project Controls">
+        <fieldset>
+          <legend>Projects</legend>
+          <button type="button">Filter</button>
+          <button type="button">Create</button>
+          <button type="button">Delete</button>
+        </fieldset>
+      </nav>
+
+      <!-- To-do controls -->
+      <nav id="todo-header" aria-label="To-do Controls">
+        <fieldset>
+          <legend>To Dos</legend>
+          <button type="button">Filter</button>
+          <button type="button">Create</button>
+        </fieldset>
+      </nav>
+    </header>
+
+    <section class="project" aria-labelledby="Project">
+      <h2>Example Project</h2>
+
+      <article class="todo" aria-labelledby="To-Do">
+        <h3>Example To-Do</h3>
+      </article>
+    </section>
+
+    <footer></footer>
+  </body>
 </html>
