@@ -27,7 +27,7 @@
         <fieldset>
           <legend>To Dos</legend>
           <button type="button">Filter</button>
-          <button type="button">Create</button>
+          <button type="button" id="create-todo">Create</button>
         </fieldset>
       </nav>
     </header>
@@ -35,13 +35,13 @@
     <section class="project" aria-labelledby="Project">
       <div>
         <h2>Example Project</h2>
-        <button>...</button>
+        <button type="button">...</button>
       </div>
 
       <article class="todo" aria-labelledby="To-Do">
         <div>
           <h3>Example To-Do</h3>
-          <button>...</button>
+          <button type="button">...</button>
         </div>
 
         <form>
@@ -93,35 +93,46 @@
 
     <dialog>
       <form>
-        <button autofocus>Close</button>
+        <button type="button" autofocus>Close</button>
         <label for="todo-title">Title</label>
         <input type="text" id="todo-title" name="todo-title" />
 
         <label for="due-date">Due date</label>
         <input type="date" id="due-date" name="due-date" />
 
-        <fieldset>
+        <fieldset id="dialogRadial">
           <legend>Priority</legend>
           <div>
-            <label for="low">Low</label>
-            <input type="radio" id="low" name="priority" value="low" checked />
+            <input
+              type="radio"
+              id="dialogLow"
+              name="priority"
+              value="low"
+              checked
+            />
+            <label for="dialogLow">Low</label>
           </div>
 
           <div>
-            <label for="medium"> Medium</label
-            ><input type="radio" id="medium" name="priority" value="medium" />
+            <input
+              type="radio"
+              id="dialogMedium"
+              name="priority"
+              value="medium"
+            />
+            <label for="dialogMedium"> Medium</label>
           </div>
 
           <div>
-            <label for="high"> High</label
-            ><input type="radio" id="high" name="priority" value="high" />
+            <input type="radio" id="dialogHigh" name="priority" value="high" />
+            <label for="dialogHigh"> High</label>
           </div>
         </fieldset>
 
         <label for="notes">Notes</label>
-        <textarea id="notes" name="notes"></textarea>
+        <textarea id="notes" name="notes" rows="5"></textarea>
 
-        <button>Submit</button>
+        <button type="button">Submit</button>
       </form>
     </dialog>
   </body>
