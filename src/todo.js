@@ -1,6 +1,6 @@
 export { CreateNewToDoDom }
 
-function CreateNewToDoDom (currentProject, insertValues) {
+function CreateNewToDoDom (currentProject) {
   const project = document.querySelector(currentProject)
   const todo = document.createElement('article')
   const heading = document.createElement('div')
@@ -16,8 +16,10 @@ function CreateNewToDoDom (currentProject, insertValues) {
   todo.append(heading, dueDate, notes)
   project.append(todo)
 
-  function insertValues (retrievedValues) {
-    title.textContent = retrievedValues.Title
+  function insertValues (getValues) {
+    console.log(getValues)
+    title.textContent = getValues.title
   }
-  insertValues({ Title: 'A different title' })
+
+  return { insertValues }
 }
