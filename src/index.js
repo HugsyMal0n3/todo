@@ -1,12 +1,15 @@
 import './styles.css'
 
 import { DialogManager } from './dialog'
+import { TodoFactory } from './todo'
 
-const toDoDialog = DialogManager(
+const todoDialog = DialogManager(
   'dialog',
   '#todo-form',
   '#create-todo',
   '#close-dialog',
   '#submit-form',
-  '.project'
+  values => {
+    TodoFactory('.project').create(values)
+  }
 )

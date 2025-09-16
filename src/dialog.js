@@ -1,5 +1,3 @@
-import { CreateNewToDoDom } from './todo'
-
 export { DialogManager }
 
 function DialogManager (
@@ -8,38 +6,32 @@ function DialogManager (
   openDialogBtn,
   closeDialogBtn,
   submitFormBtn,
-  project
+  onSubmit
 ) {
   const dialog = document.querySelector(dialogBox)
   const form = document.querySelector(dialogForm)
   const openBtn = document.querySelector(openDialogBtn)
   const closeBtn = document.querySelector(closeDialogBtn)
   const submitBtn = document.querySelector(submitFormBtn)
-  const currentProject = document.querySelector(project)
 
-  openBtn.addEventListener('mouseup', () => {
-    dialog.showModal()
-  })
+  const open = () => dialog.showModal()
+  const close = () => dialog.close()
+  const reset = () => form.reset()
 
-  closeBtn.addEventListener('mouseup', () => {
-    dialog.close()
-  })
-
-  submitBtn.addEventListener('mouseup', () => {
-    CreateNewToDoDom(project).insertValues(retrieveValues())
-    resetForm()
-    dialog.close()
-  })
-
-  const resetForm = function () {
-    form.reset()
-  }
-
-  const retrieveValues = function () {
+  const getValues = function () {
     const title = dialog.querySelector('#todo-title').value
     const dueDate = dialog.querySelector('#due-date').value
     const priority = dialog.querySelector('input[name=priority]:checked').value
     const notes = dialog.querySelector('#notes').value
     return { title, dueDate, priority, notes }
   }
+
+  openBtn.addEventListener('mouseup', open)
+  closeBtn.addEventListener('mouseup', close)
+  submitBtn.addEventListener('mouseup', () => {
+    const values = getValues()
+    onSubmit(values)
+    reset()
+    close()
+  })
 }
