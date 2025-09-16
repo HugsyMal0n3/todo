@@ -1,6 +1,7 @@
 import './styles.css'
 
 import { DialogManager } from './dialog'
+import { CreateNewToDoDom } from './todo'
 
 const toDoDialog = DialogManager(
   'dialog',
@@ -9,3 +10,5 @@ const toDoDialog = DialogManager(
   '#close-dialog',
   '#submit-form'
 )
+
+CreateNewToDoDom('.project')
