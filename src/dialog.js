@@ -13,6 +13,7 @@ function DialogManager (
   const openBtn = document.querySelector(openDialogBtn)
   const closeBtn = document.querySelector(closeDialogBtn)
   const submitBtn = document.querySelector(submitFormBtn)
+  const radial = document.querySelector('#dialogRadial')
 
   const open = () => dialog.showModal()
   const close = () => dialog.close()
@@ -25,15 +26,6 @@ function DialogManager (
     const notes = dialog.querySelector('#notes').value
     return { title, dueDate, priority, notes }
   }
-
-  openBtn.addEventListener('mouseup', open)
-  closeBtn.addEventListener('mouseup', close)
-  submitBtn.addEventListener('mouseup', () => {
-    const values = getValues()
-    onSubmit(values)
-    reset()
-    close()
-  })
 
   const priorityLevel = choice => {
     switch (choice) {
@@ -48,8 +40,23 @@ function DialogManager (
     }
   }
 
-  const radial = document.querySelector('#dialogRadial')
-  radial.addEventListener('click', () => {
+  const updateBackground = () => {
     dialog.style.background = priorityLevel(getValues().priority)
+  }
+
+  openBtn.addEventListener('mouseup', () => {
+    updateBackground()
+    open()
   })
+  closeBtn.addEventListener('mouseup', close)
+  radial.addEventListener('click', updateBackground)
+  submitBtn.addEventListener('mouseup', e => {
+    e.preventDefault()
+    const values = getValues()
+    onSubmit(values)
+    reset()
+    close()
+  })
+
+  return { open, close, reset, getValues }
 }
