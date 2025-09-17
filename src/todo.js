@@ -9,12 +9,18 @@ function TodoFactory (currentProject) {
     todo.style.background = priorityLevel(values.priority)
 
     const heading = document.createElement('div')
+    heading.id = 'heading'
     const title = document.createElement('h3')
-    const button = document.createElement('button')
     const dueDate = document.createElement('p')
     const notes = document.createElement('p')
 
+    const button = document.createElement('button')
+    button.id = 'button'
+    button.type = 'button'
     button.textContent = '...'
+    button.addEventListener('mouseup', () => {
+      todo.remove()
+    })
 
     title.textContent = values.title
     dueDate.textContent = values.dueDate
