@@ -6,6 +6,7 @@ function TodoFactory (currentProject) {
   function create (values) {
     const todo = document.createElement('article')
     todo.className = 'todo'
+    todo.style.background = priorityLevel(values.priority)
 
     const heading = document.createElement('div')
     const title = document.createElement('h3')
@@ -26,7 +27,18 @@ function TodoFactory (currentProject) {
     return todo
   }
 
-  function priority () {}
+  const priorityLevel = choice => {
+    switch (choice) {
+      case 'low':
+        return '#eaf2f8'
+      case 'medium':
+        return '#f2e6feff'
+      case 'high':
+        return '#fde0e0'
+      default:
+        break
+    }
+  }
 
-  return { create }
+  return { create, priorityLevel }
 }
