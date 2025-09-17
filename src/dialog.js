@@ -34,4 +34,22 @@ function DialogManager (
     reset()
     close()
   })
+
+  const priorityLevel = choice => {
+    switch (choice) {
+      case 'low':
+        return '#eaf2f8'
+      case 'medium':
+        return '#f2e6feff'
+      case 'high':
+        return '#fde0e0'
+      default:
+        break
+    }
+  }
+
+  const radial = document.querySelector('#dialogRadial')
+  radial.addEventListener('click', () => {
+    dialog.style.background = priorityLevel(getValues().priority)
+  })
 }
