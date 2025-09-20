@@ -101,7 +101,33 @@ button:hover {
 .todo div:first-child {
   display: grid;
   grid-template-columns: 1fr auto;
+  position: relative;
   align-items: center;
+}
+
+#general-btn,
+#action-btn {
+  position: absolute;
+  top: 10;
+}
+
+#general-btn {
+  left: 90%;
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+#action-btn {
+  display: flex;
+  z-index: 2;
+  gap: 0px;
+  left: 69%;
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+
+#action-btn:hover {
+  opacity: 1;
 }
 
 .project,
