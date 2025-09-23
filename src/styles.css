@@ -105,25 +105,47 @@ button:hover {
   align-items: center;
 }
 
-#option-btn {
-  z-index: 1;
-  transition: all 0.5s ease-in-out;
-}
-
 .action-btns {
-  z-index: 2;
-  gap: 0px;
+  display: flex;
+}
+
+.action {
   opacity: 0;
-  transition: all 0.5s ease-in;
+  transform: translateX(20px);
 }
 
-.action-btns:hover {
-  opacity: 1;
+.slide-in {
+  animation: slideIn 0.3s forwards ease-out;
 }
 
-#option-btn {
-  visibility: visible;
-  opacity: 1;
+.slide-out {
+  animation: slideOut 0.3s forwards ease-in;
+}
+
+.slide-in:first-child {
+  animation-delay: 0.1s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
 }
 
 .project,

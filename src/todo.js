@@ -24,6 +24,8 @@ function TodoFactory (currentProject) {
     dueDate.textContent = values.dueDate
     notes.textContent = values.notes
 
+    actionBtns.className = 'action-btns'
+
     actionBtns.append(optionBtn)
     heading.append(title, actionBtns)
     todo.append(heading, dueDate, notes)
@@ -48,7 +50,7 @@ function TodoFactory (currentProject) {
   function createActionButton (label, onClick) {
     const btn = document.createElement('button')
     btn.type = 'button'
-    btn.className = 'action'
+    btn.className = 'action slide-in'
     btn.textContent = label
     btn.addEventListener('mouseup', onClick)
     return btn
@@ -58,7 +60,11 @@ function TodoFactory (currentProject) {
     const existingBtns = todo.querySelectorAll('.action')
 
     if (existingBtns.length > 1) {
-      existingBtns.forEach(btn => btn.remove())
+      existingBtns.forEach(btn => {
+        btn.classList.remove('slide-in')
+        btn.classList.add('slide-out')
+        btn.addEventListener('animationend', () => btn.remove(), { once: true })
+      })
     } else {
       const editBtn = createActionButton('Edit', () => {
         console.log(`Editing "${todo.querySelector('h3').textContent}"`)
@@ -67,6 +73,7 @@ function TodoFactory (currentProject) {
       const delBtn = createActionButton('Delete', () => {
         todo.remove()
       })
+
       optionBtn.insertAdjacentElement('beforebegin', editBtn)
       optionBtn.insertAdjacentElement('beforebegin', delBtn)
     }
