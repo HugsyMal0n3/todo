@@ -173,6 +173,7 @@ button:hover {
   display: grid;
   background-color: var(--blue-pastel);
   height: fit-content;
+  gap: 1rem;
 }
 
 form {

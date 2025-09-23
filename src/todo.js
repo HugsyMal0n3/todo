@@ -11,7 +11,11 @@ function TodoFactory (currentProject) {
     const heading = document.createElement('div')
     const actionBtns = document.createElement('div')
     const title = document.createElement('h3')
+    const dueDateDiv = document.createElement('div')
+    const dueDateHeading = document.createElement('h4')
     const dueDate = document.createElement('p')
+    const notesDiv = document.createElement('div')
+    const notesHeading = document.createElement('h4')
     const notes = document.createElement('p')
 
     const optionBtn = document.createElement('button')
@@ -21,14 +25,18 @@ function TodoFactory (currentProject) {
     optionBtn.addEventListener('mouseup', () => toggleOptions(todo, optionBtn))
 
     title.textContent = values.title
+    dueDateHeading.textContent = 'Due'
     dueDate.textContent = values.dueDate
+    notesHeading.textContent = 'Notes'
     notes.textContent = values.notes
 
     actionBtns.className = 'action-btns'
 
     actionBtns.append(optionBtn)
     heading.append(title, actionBtns)
-    todo.append(heading, dueDate, notes)
+    dueDateDiv.append(dueDateHeading, dueDate)
+    notesDiv.append(notesHeading, notes)
+    todo.append(heading, dueDateDiv, notesDiv)
     project.append(todo)
 
     return todo
