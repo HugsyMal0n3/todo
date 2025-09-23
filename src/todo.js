@@ -9,31 +9,30 @@ function TodoFactory (currentProject) {
     todo.style.background = priorityLevel(values.priority)
 
     const heading = document.createElement('div')
-    heading.id = 'heading'
+    const actionBtns = document.createElement('div')
     const title = document.createElement('h3')
     const dueDate = document.createElement('p')
     const notes = document.createElement('p')
 
-    const button = document.createElement('button')
-    button.id = 'button'
-    button.type = 'button'
-    button.textContent = '...'
-    button.addEventListener('mouseup', () => {
-      todo.remove()
-    })
+    const optionBtn = document.createElement('button')
+    optionBtn.id = 'option-btn'
+    optionBtn.type = 'button'
+    optionBtn.textContent = '...'
+    optionBtn.addEventListener('mouseup', () => toggleOptions(todo, optionBtn))
 
     title.textContent = values.title
     dueDate.textContent = values.dueDate
     notes.textContent = values.notes
 
-    heading.append(title, button)
+    actionBtns.append(optionBtn)
+    heading.append(title, actionBtns)
     todo.append(heading, dueDate, notes)
     project.append(todo)
 
     return todo
   }
 
-  const priorityLevel = choice => {
+  function priorityLevel (choice) {
     switch (choice) {
       case 'low':
         return '#eaf2f8'
@@ -46,5 +45,32 @@ function TodoFactory (currentProject) {
     }
   }
 
-  return { create, priorityLevel }
+  function createActionButton (label, onClick) {
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.className = 'action'
+    btn.textContent = label
+    btn.addEventListener('mouseup', onClick)
+    return btn
+  }
+
+  function toggleOptions (todo, optionBtn) {
+    const existingBtns = todo.querySelectorAll('.action')
+
+    if (existingBtns.length > 1) {
+      existingBtns.forEach(btn => btn.remove())
+    } else {
+      const editBtn = createActionButton('Edit', () => {
+        console.log(`Editing "${todo.querySelector('h3').textContent}"`)
+      })
+
+      const delBtn = createActionButton('Delete', () => {
+        todo.remove()
+      })
+      optionBtn.insertAdjacentElement('beforebegin', editBtn)
+      optionBtn.insertAdjacentElement('beforebegin', delBtn)
+    }
+  }
+
+  return { create }
 }

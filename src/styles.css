@@ -105,28 +105,24 @@ button:hover {
   align-items: center;
 }
 
-#general-btn,
-#action-btn {
-  position: absolute;
-  top: 10;
-}
-
-#general-btn {
-  left: 90%;
+#option-btn {
   z-index: 1;
   transition: all 0.5s ease-in-out;
 }
 
-#action-btn {
-  display: flex;
+.action-btns {
   z-index: 2;
   gap: 0px;
-  left: 69%;
   opacity: 0;
   transition: all 0.5s ease-in;
 }
 
-#action-btn:hover {
+.action-btns:hover {
+  opacity: 1;
+}
+
+#option-btn {
+  visibility: visible;
   opacity: 1;
 }
 
