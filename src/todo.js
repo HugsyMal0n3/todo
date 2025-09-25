@@ -19,7 +19,7 @@ function TodoFactory (currentProject) {
     const notes = document.createElement('p')
 
     const optionBtn = document.createElement('button')
-    optionBtn.id = 'option-btn'
+    optionBtn.class = 'option-btn'
     optionBtn.type = 'button'
     optionBtn.textContent = '...'
     optionBtn.addEventListener('mouseup', () => toggleOptions(todo, optionBtn))

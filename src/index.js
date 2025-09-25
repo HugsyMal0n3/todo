@@ -13,3 +13,9 @@ const todoDialog = DialogManager(
     TodoFactory('.project').create(values)
   }
 )
+
+const exampleToDo = TodoFactory('.project').create({
+  title: 'Example To-Do',
+  dueDate: '04/12/2025',
+  notes: 'An example note'
+})
