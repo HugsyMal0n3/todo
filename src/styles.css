@@ -97,8 +97,8 @@ button:hover {
   background-color: var(--pastel-navy-mist);
 }
 
-.project div:first-child,
-.todo div:first-child {
+.project > div:first-child,
+.todo > div:first-child {
   display: grid;
   grid-template-columns: 1fr auto;
   position: relative;
@@ -146,6 +146,13 @@ button:hover {
     opacity: 0;
     transform: translateX(20px);
   }
+}
+
+.content {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-in-out;
 }
 
 .project,

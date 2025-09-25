@@ -8,11 +8,10 @@ function TodoFactory (currentProject) {
     todo.className = 'todo'
     todo.style.background = priorityLevel(values.priority)
 
-    const heading = document.createElement('div')
     const actionBtns = document.createElement('div')
+    const heading = document.createElement('div')
+    const headingDiv = document.createElement('div')
     const title = document.createElement('h3')
-    const dueDateDiv = document.createElement('div')
-    const dueDateHeading = document.createElement('h4')
     const dueDate = document.createElement('p')
     const notesDiv = document.createElement('div')
     const notesHeading = document.createElement('h4')
@@ -24,19 +23,23 @@ function TodoFactory (currentProject) {
     optionBtn.textContent = '...'
     optionBtn.addEventListener('mouseup', () => toggleOptions(todo, optionBtn))
 
+    heading.addEventListener('mouseup', () => {
+      expandTodo(notesDiv)
+    })
+
     title.textContent = values.title
-    dueDateHeading.textContent = 'Due'
     dueDate.textContent = values.dueDate
     notesHeading.textContent = 'Notes'
     notes.textContent = values.notes
 
     actionBtns.className = 'action-btns'
+    notesDiv.className = 'content'
 
     actionBtns.append(optionBtn)
-    heading.append(title, actionBtns)
-    dueDateDiv.append(dueDateHeading, dueDate)
+    headingDiv.append(title, dueDate)
+    heading.append(headingDiv, actionBtns)
     notesDiv.append(notesHeading, notes)
-    todo.append(heading, dueDateDiv, notesDiv)
+    todo.append(heading, notesDiv)
     project.append(todo)
 
     return todo
@@ -84,6 +87,18 @@ function TodoFactory (currentProject) {
 
       optionBtn.insertAdjacentElement('beforebegin', editBtn)
       optionBtn.insertAdjacentElement('beforebegin', delBtn)
+    }
+  }
+
+  function expandTodo (content) {
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null
+      setTimeout(function () {
+        content.style.display = 'none'
+      }, 200)
+    } else {
+      content.style.display = 'block'
+      content.style.maxHeight = content.scrollHeight + 'px'
     }
   }
 
