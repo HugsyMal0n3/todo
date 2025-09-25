@@ -23,7 +23,7 @@ function TodoFactory (currentProject) {
     optionBtn.textContent = '...'
     optionBtn.addEventListener('mouseup', () => toggleOptions(todo, optionBtn))
 
-    heading.addEventListener('mouseup', () => {
+    headingDiv.addEventListener('mouseup', () => {
       expandTodo(notesDiv)
     })
 
