@@ -29,8 +29,11 @@ function TodoFactory (currentProject) {
 
     title.textContent = values.title
     dueDate.textContent = values.dueDate
-    notesHeading.textContent = 'Notes'
     notes.textContent = values.notes
+
+    if (notes.textContent) {
+      notesHeading.textContent = 'Notes'
+    }
 
     actionBtns.className = 'action-btns'
     notesDiv.className = 'content'
