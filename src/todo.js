@@ -7,7 +7,7 @@ function TodoFactory (currentProject) {
   function create (values) {
     const todoArticle = document.createElement('article')
     const completeBtn = document.createElement('button')
-    completeBtn.class = 'complete'
+    completeBtn.className = 'complete'
     completeBtn.type = 'button'
     completeBtn.addEventListener('mouseup', () => {
       toggleComplete(title, todoArticle)

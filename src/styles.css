@@ -97,6 +97,28 @@ button:hover {
   background-color: var(--pastel-navy-mist);
 }
 
+article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: center;
+  height: fit-content;
+}
+
+.complete {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  position: relative;
+  top: 2rem;
+  background-color: white;
+  border: solid 0.2rem var(--baby-blue);
+  box-shadow: var(--box-shadow);
+}
+
+.complete:hover {
+  background-color: var(--light-steel-blue);
+}
+
 .project > div:first-child,
 .todo > div:first-child {
   display: grid;
@@ -169,6 +191,7 @@ button:hover {
   grid-template-rows: min-content;
   grid-template-columns: repeat(3, 1fr);
   height: 100vh;
+  align-content: start;
 }
 
 .project > div {
