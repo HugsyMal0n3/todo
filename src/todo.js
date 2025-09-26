@@ -2,9 +2,18 @@ export { TodoFactory }
 
 function TodoFactory (currentProject) {
   const project = document.querySelector(currentProject)
+  let removalTimer
 
   function create (values) {
-    const todo = document.createElement('article')
+    const todoArticle = document.createElement('article')
+    const completeBtn = document.createElement('button')
+    completeBtn.class = 'complete'
+    completeBtn.type = 'button'
+    completeBtn.addEventListener('mouseup', () => {
+      toggleComplete(title, todoArticle)
+    })
+
+    const todo = document.createElement('div')
     todo.className = 'todo'
     todo.style.background = priorityLevel(values.priority)
 
@@ -21,7 +30,9 @@ function TodoFactory (currentProject) {
     optionBtn.class = 'option-btn'
     optionBtn.type = 'button'
     optionBtn.textContent = '...'
-    optionBtn.addEventListener('mouseup', () => toggleOptions(todo, optionBtn))
+    optionBtn.addEventListener('mouseup', () => {
+      toggleOptions(todoArticle, optionBtn)
+    })
 
     headingDiv.addEventListener('mouseup', () => {
       expandTodo(notesDiv)
@@ -43,7 +54,8 @@ function TodoFactory (currentProject) {
     heading.append(headingDiv, actionBtns)
     notesDiv.append(notesHeading, notes)
     todo.append(heading, notesDiv)
-    project.append(todo)
+    todoArticle.append(completeBtn, todo)
+    project.append(todoArticle)
 
     return todo
   }
@@ -103,6 +115,28 @@ function TodoFactory (currentProject) {
       content.style.display = 'block'
       content.style.maxHeight = content.scrollHeight + 'px'
     }
+  }
+
+  function toggleComplete (heading, todo) {
+    const strike = heading.querySelector('s')
+
+    if (!strike) {
+      const content = heading.textContent
+      const s = document.createElement('s')
+      s.textContent = `${content}`
+      heading.textContent = ''
+      heading.append(s)
+
+      removalTimer = setTimeout(() => {
+        todo.remove()
+      }, 4000)
+    } else {
+      const content = strike.textContent
+      heading.textContent = content
+
+      clearTimeout(removalTimer)
+    }
+    return { toggleComplete }
   }
 
   return { create }
