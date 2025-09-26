@@ -93,7 +93,7 @@ function TodoFactory (currentProject) {
       })
     } else {
       const editBtn = createActionButton('Edit', () => {
-        console.log(`Editing "${todo.querySelector('h3').textContent}"`)
+        editTodo(todo)
       })
 
       const delBtn = createActionButton('Delete', () => {
@@ -137,6 +137,51 @@ function TodoFactory (currentProject) {
       clearTimeout(removalTimer)
     }
     return { toggleComplete }
+  }
+
+  function editTodo (todo) {
+    const title = todo.querySelector('h3')
+    const dueDate = todo.querySelector('p')
+    const notes = todo.querySelector('.content > p')
+
+    title.style.color = '#ec9fc8'
+    dueDate.style.color = '#ec9fc8'
+    notes.style.color = '#ec9fc8'
+
+    title.setAttribute('contenteditable', 'true')
+    title.focus()
+    title.addEventListener('keypress', function (event) {
+      if (event.key === 'Enter') {
+        if (event.shiftKey) {
+          return
+        }
+        event.preventDefault()
+        dueDate.focus()
+      }
+    })
+
+    dueDate.setAttribute('contenteditable', 'true')
+    dueDate.addEventListener('keypress', function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault()
+        notes.focus()
+      }
+    })
+
+    notes.setAttribute('contenteditable', 'true')
+    notes.addEventListener('keypress', function (event) {
+      if (event.key === 'Enter') {
+        if (event.shiftKey) {
+          return
+        }
+        title.setAttribute('contenteditable', 'false')
+        title.style.color = '#5f6f7a'
+        notes.setAttribute('contenteditable', 'false')
+        notes.style.color = '#5f6f7a'
+        dueDate.setAttribute('contenteditable', 'false')
+        dueDate.style.color = '#5f6f7a'
+      }
+    })
   }
 
   return { create }
