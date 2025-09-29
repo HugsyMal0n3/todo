@@ -27,11 +27,11 @@ function TodoFactory (currentProject) {
     const notes = document.createElement('p')
 
     const optionBtn = document.createElement('button')
-    optionBtn.class = 'option-btn'
+    optionBtn.className = 'option-btn'
     optionBtn.type = 'button'
     optionBtn.textContent = '...'
     optionBtn.addEventListener('mouseup', () => {
-      toggleOptions(todoArticle, optionBtn)
+      toggleOptions(todoArticle)
     })
 
     headingDiv.addEventListener('mouseup', () => {
@@ -41,11 +41,7 @@ function TodoFactory (currentProject) {
     title.textContent = values.title
     dueDate.textContent = values.dueDate
     notes.textContent = values.notes
-
-    if (notes.textContent) {
-      notesHeading.textContent = 'Notes'
-    }
-
+    notesHeading.textContent = 'Notes'
     actionBtns.className = 'action-btns'
     notesDiv.className = 'content'
 
@@ -82,8 +78,9 @@ function TodoFactory (currentProject) {
     return btn
   }
 
-  function toggleOptions (todo, optionBtn) {
+  function toggleOptions (todo) {
     const existingBtns = todo.querySelectorAll('.action')
+    const optionBtn = todo.querySelector('.option-btn')
 
     if (existingBtns.length > 1) {
       existingBtns.forEach(btn => {
@@ -93,6 +90,8 @@ function TodoFactory (currentProject) {
       })
     } else {
       const editBtn = createActionButton('Edit', () => {
+        expandTodo(todo.querySelector('.content'))
+        todo.classList.toggle('edit-mode')
         editTodo(todo)
       })
 
@@ -144,9 +143,9 @@ function TodoFactory (currentProject) {
     const dueDate = todo.querySelector('p')
     const notes = todo.querySelector('.content > p')
 
-    title.style.color = '#ec9fc8'
-    dueDate.style.color = '#ec9fc8'
-    notes.style.color = '#ec9fc8'
+    title.style.color = '#a2c5d9'
+    dueDate.style.color = '#a2c5d9'
+    notes.style.color = '#a2c5d9'
 
     title.setAttribute('contenteditable', 'true')
     title.focus()
@@ -180,6 +179,8 @@ function TodoFactory (currentProject) {
         notes.style.color = '#5f6f7a'
         dueDate.setAttribute('contenteditable', 'false')
         dueDate.style.color = '#5f6f7a'
+        toggleOptions(todo)
+        todo.classList.toggle('edit-mode')
       }
     })
   }
